@@ -1,0 +1,20 @@
+{
+  "name": "storefront-update",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfxod/Storefront-Update.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfxod/Storefront-Update/issues"
+  },
+  "homepage": "https://github.com/mfxod/Storefront-Update#readme"
+}

@@ -14,8 +14,8 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "",
-  database: "bamazon"
+  password: "password",
+  database: "bamazondb"
 });
 
 // Creates the connection with the server and loads the product data upon a successful connection

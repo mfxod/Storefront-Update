@@ -1,13 +1,20 @@
-{{!-- show the stock items here --}}
+<h2>Checkout</h2>
+<form id="place-order" class="button-size">
+    <input type="text" name="id" placeholder="Item ID">
+    <input type="text" name="order-quantity" placeholder="Quantity">
+    <button type="submit">Place Order</button>
+</form>
+{{!-- Q: how to display total cost after order placed? Is #if necessary? --}}
+
 <ul>
     {{#each products}}
-        <li>
-            <p>{{this.product_name}}
-                <span class="item-id-text">&#40Item ID: {{this.item_id}}&#41</span>
-            </p>
-            <p>{{this.department_name}}</p>
-            <p>{{this.price}}</p>
-            <p>{{this.stock_quantity}}</p>
-        </li>
+    <li>
+        <p>{{this.product_name}}
+            <span class="item-id-text">&#40Item ID: {{this.item_id}}&#41</span>
+        </p>
+        <p>{{this.department_name}}</p>
+        <p>{{this.price}}</p>
+        <p>{{this.stock_quantity}}</p>
+    </li>
     {{/each}}
 </ul>

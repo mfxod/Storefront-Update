@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mfxod/Storefront-Update#readme",
   "dependencies": {
     "console.table": "^0.10.0",
+    "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "inquirer": "^6.5.0",
     "mysql": "^2.17.1"

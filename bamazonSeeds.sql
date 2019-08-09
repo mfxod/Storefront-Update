@@ -23,7 +23,7 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("22-Inch Color TV", "Electronics", 700.00, 4);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Polaroitem_id Camera", "Photography", 93.75, 10);
+VALUES ("Polaroid Camera", "Photography", 93.75, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Western Electric 554 Yellow Wall Phone", "Electronics", 19.95, 22);

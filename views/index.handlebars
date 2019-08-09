@@ -1,0 +1,13 @@
+{{!-- show the stock items here --}}
+<ul>
+    {{#each products}}
+        <li>
+            <p>{{this.product_name}}
+                <span class="item-id-text">&#40Item ID: {{this.item_id}}&#41</span>
+            </p>
+            <p>{{this.department_name}}</p>
+            <p>{{this.price}}</p>
+            <p>{{this.stock_quantity}}</p>
+        </li>
+    {{/each}}
+</ul>

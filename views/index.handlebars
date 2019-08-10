@@ -1,10 +1,9 @@
 <h2>Checkout</h2>
-<form id="place-order" class="button-size">
-    <input type="text" name="id" placeholder="Item ID">
-    <input type="text" name="order-quantity" placeholder="Quantity">
+<form id="place_order" class="button-size">
+    <input type="text" name="id" placeholder="Enter item ID">
+    <input type="text" name="order_quantity" placeholder="Enter order quantity">
     <button type="submit">Place Order</button>
 </form>
-{{!-- Q: how to display total cost after order placed? Is #if necessary? --}}
 
 <ul>
     {{#each products}}
@@ -12,9 +11,30 @@
         <p>{{this.product_name}}
             <span class="item-id-text">&#40Item ID: {{this.item_id}}&#41</span>
         </p>
-        <p>{{this.department_name}}</p>
-        <p>{{this.price}}</p>
-        <p>{{this.stock_quantity}}</p>
+        <p>Dept.: {{this.department_name}}</p>
+        <p>Price: {{this.price}}, In Stock: {{this.stock_quantity}}</p>
     </li>
+    <hr>
     {{/each}}
 </ul>
+
+<script type="text/javascript">
+$("#place_order").on("submit", event => {
+    event.preventDefault();
+    console.log("Submitted.");
+    const id = $("#place_order [name=id]").val().trim();
+    const quantity = $("#place_order [name=order_quantity]").val().trim();
+    console.log("id: " + id + ", quantity: " + quantity)
+
+    $.ajax("/api/order", {
+        type: "POST",
+        data: {
+            "order_quantity": quantity,
+            "id": id
+        } 
+    }).then( () => {
+        console.log("Placed order for Item ID: " + id)
+        location.reload()
+    })
+})
+</script>

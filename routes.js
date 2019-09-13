@@ -39,28 +39,33 @@ app.get("/", (req, res) => {
             return res.status(500).send("Niet, Smirnoff.")
         }
 
+        // console.log(JSON.stringify(data))
         res.render("index", { products: data })
+        // console.log(data)
+        module.exports = data
     })
 })
 
 // POST to place order
 app.post("/api/order", (req, res) => {
-    connection.query("SELECT stock_quantity FROM products WHERE item_id = ?", [req.body.id], (err, result) => {
+    connection.query("SELECT stockQuantity FROM products WHERE itemID = ?", [req.body.id], (err, result) => {
         if (err) {
             console.log(err)
             return res.status(500).send("Niet, Smirnoff.")
         }
 
-        const difference = result[0].stock_quantity - req.body.order_quantity
-
-        // need to show order total with handlebars
-        // const orderTotal = result[0].price * req.body.order_quantity
+        const difference = result[0].stockQuantity - req.body.order_quantity
+        // const messages = [
+        //     {msg: result[0].price * req.body.order_quantity},
+        //     {msg: "Order quantity must be less than In Stock quantity."}
+        // ]
 
         if (difference < 0) {
-            // this message needs to be displayed on page through handlebars somehow
-            console.log("Order quantity must be less than In Stock quantity.")
+            console.log(difference)
+            res.render("index", { message: "Order quantity must be less than In Stock quantity." })
+            // module.exports = messages
         } else {
-            connection.query("UPDATE products SET stock_quantity = ? WHERE item_id = ?", [difference, req.body.id], (err, result) => {
+            connection.query("UPDATE products SET stockQuantity = ? WHERE itemID = ?", [difference, req.body.id], (err, result) => {
                 if (err) {
                     console.log(err)
                     return res.status(500).send("Niet, Smirnoff.")

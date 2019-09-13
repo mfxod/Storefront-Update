@@ -1,0 +1,27 @@
+
+on submit
+    clear all previously displayed messages
+
+    const orderQuantity = user input from form
+    const itemID = user input from form
+
+    const stockQuantity = stock_quantity from db  
+
+    if (!Number.isInteger(orderQuantity) || !Number.isInteger(itemID)) {
+        display: "Item ID and Order Quantity must be an integer less than or equal to In Stock quantity."
+        return
+    }
+
+    if (orderQuantity > stockQuantity) {
+        display: "Order quantity must be less than or equal to In Stock quantity."
+        return
+    }
+
+    if (stockQuantity - orderQuantity === 0) {
+        run POST request
+        display: "Order Accepted!"
+        indicate: "Out of Stock"
+    }
+
+    run POST request
+    display: "Order Accepted!"

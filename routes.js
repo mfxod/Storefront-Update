@@ -38,10 +38,7 @@ app.get("/", (req, res) => {
             console.log(err)
             return res.status(500).send("Niet, Smirnoff.")
         }
-
-        // console.log(JSON.stringify(data))
         res.render("index", { products: data })
-        // console.log(data)
         module.exports = data
     })
 })
@@ -55,22 +52,27 @@ app.post("/api/order", (req, res) => {
         }
 
         const difference = result[0].stockQuantity - req.body.order_quantity
-        // const messages = [
-        //     {msg: result[0].price * req.body.order_quantity},
-        //     {msg: "Order quantity must be less than In Stock quantity."}
-        // ]
 
         if (difference < 0) {
             console.log(difference)
-            res.render("index", { message: "Order quantity must be less than In Stock quantity." })
-            // module.exports = messages
+            connection.query("SELECT * FROM products", (err, data) => {
+                if (err) {
+                    console.log(err)
+                    return res.status(500).send("Niet, Smirnoff.")
+                }
+                
+                console.log("Making it this far.")
+                // render doesn't work
+                // res.render("index", { message: "Order quantity must be less than In Stock quantity.", products: data })
+                // module.exports = data
+            })
+
         } else {
             connection.query("UPDATE products SET stockQuantity = ? WHERE itemID = ?", [difference, req.body.id], (err, result) => {
                 if (err) {
                     console.log(err)
                     return res.status(500).send("Niet, Smirnoff.")
                 }
-
                 return res.json(result)
             })
         }

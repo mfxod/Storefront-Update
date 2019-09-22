@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 // GET to display products
-app.get("/", (req, res) => {
+router
+.get("/", (req, res) => {
     connection.query("SELECT * FROM products", (err, data) => {
         if (err) {
             console.log(err)
@@ -13,7 +14,7 @@ app.get("/", (req, res) => {
 })
 
 // POST to place order
-app.post("/api/order", (req, res) => {
+.post("/api/order", (req, res) => {
     connection.query("SELECT stockQuantity FROM products WHERE itemID = ?", [req.body.id], (err, result) => {
         if (err) {
             console.log(err)

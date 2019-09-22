@@ -23,13 +23,6 @@ if(process.env.JAWSDB_URL) {
         database: "bamazondb"
     })
 }
-// connection = mysql.createConnection({
-//     host: "localhost",
-//     port: 3306,
-//     user: "root",
-//     password: "password",
-//     database: "bamazondb"
-// })
 
 connection.connect(err => {
     if (err) {
@@ -38,8 +31,6 @@ connection.connect(err => {
     }
     console.log("connected as id " + connection.threadId)
 });
-
-
 
 // ===== ROUTES =====
 
@@ -51,7 +42,6 @@ app.get("/", (req, res) => {
             return res.status(500).send("Niet, Smirnoff.")
         }
         res.render("index", { products: data })
-        module.exports = data
     })
 })
 
@@ -74,9 +64,10 @@ app.post("/api/order", (req, res) => {
                 }
                 
                 console.log("Making it this far.")
-                // render doesn't work
-                // res.render("index", { message: "Order quantity must be less than In Stock quantity.", products: data })
-                // module.exports = data
+                // console.log(data)
+                // render doesn't work...
+                res.render("index", { message: "Order quantity must be less than In Stock quantity.", products: data })
+                console.log("How about here?")
             })
 
         } else {
